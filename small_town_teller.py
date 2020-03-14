@@ -1,3 +1,8 @@
+from decimal import getcontext
+
+getcontext().prec = 2
+
+
 class Person:
     def __init__(self, id, first_name, last_name):
         self.id = id
@@ -41,7 +46,7 @@ class Bank:
         
         print("Amount Deposited:", amount)
     
-    def withdraw(self, account_number, amount):
+    def withdrawal(self, account_number, amount):
         self.accounts[account_number] -= amount
         
         if amount > self.accounts[account_number]:
