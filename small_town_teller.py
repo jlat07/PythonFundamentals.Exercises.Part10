@@ -1,8 +1,3 @@
-from decimal import getcontext
-
-getcontext().prec = 2
-
-
 class Person:
     def __init__(self, id, first_name, last_name):
         self.id = id
