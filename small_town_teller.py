@@ -5,7 +5,7 @@ class Person:
         self.last_name = last_name
     
     def __str__(self):
-        return f"{self.id} identifies as {self.first_name}_{self.last_name}"
+        return f"{self.id}, {self.first_name}_{self.last_name}"
     
     def __repr__(self):
         return f"{self.id}, {self.first_name}_{self.last_name}"
@@ -16,7 +16,8 @@ class Account:
         self.number = number
         self.a_type = a_type
         self.owner = owner
-
+        self.balance = balance
+    
     def __repr__(self):
         return f"{self.number}, {self.a_type}, {self.owner},"
 
@@ -24,30 +25,25 @@ class Account:
 class Bank:
     def __init__(self):
         self.customers = []
-        self.accounts = []
+        self.accounts = {}
     
-    def add_customer(self, customer):
-        self.customers.append(customer)
-        
+    def add_customer(self, person):
+        self.customers.append(person.id)
     
     def add_account(self, account):
-        #   for i in account:
-        #   if i = i
-        #       print("Account already exist")
-        #   else:
-        self.accounts.append(account)
-        # print("Account Number: ", account.number, "Account Type:", account.a_type, " Owner:", account.owner, "Account Balance:", account.balance)
+        if account not in self.accounts:
+            self.accounts[account.number] = account.balance
+        else:
+            print("Account already exist")
     
     def deposit(self, account_number, amount):
-        
-        self.account.balance += amount
+        self.accounts[account_number] += amount
         
         print("Amount Deposited:", amount)
     
     def withdraw(self, amount):
-        
         self.account.balance -= amount
-
+        
         # if self.balance >= amount:
         #    self.balance -= amount
         #    print('You Withdrew:', amount)
@@ -55,17 +51,17 @@ class Bank:
         # print("Insufficient balance  ")
         print("Amount Withdrawn:", amount)
     
-    def balance_inquiry(self, account):
+    def balance_inquiry(self, account_number):
         
-        print("Available Balance=", self.account.balance)
+        print(f"Available Balance= , {self.accounts[account_number]}")
 
 
 zc_bank = Bank()
 bob = Person(1, "Bob", "Smith")
 zc_bank.add_customer(bob)
-#bob_savings = Account(1001, "SAVINGS", bob)
-#zc_bank.add_account(bob_savings)
-#zc_bank.balance_inquiry(1001)
+bob_savings = Account(1001, "SAVINGS", bob)
+zc_bank.add_account(bob_savings)
+# zc_bank.balance_inquiry(1001)
 # 0
 '''zc_bank.deposit(1001, 256.02)
 zc_bank.balance_inquiry(1001)
