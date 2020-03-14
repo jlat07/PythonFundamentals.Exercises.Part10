@@ -41,32 +41,14 @@ class Bank:
         
         print("Amount Deposited:", amount)
     
-    def withdraw(self, amount):
-        self.account.balance -= amount
+    def withdraw(self, account_number, amount):
+        self.accounts[account_number] -= amount
         
-        # if self.balance >= amount:
-        #    self.balance -= amount
-        #    print('You Withdrew:', amount)
-        # else:
-        # print("Insufficient balance  ")
-        print("Amount Withdrawn:", amount)
+        if amount > self.accounts[account_number]:
+            print("Insufficient balance")
+        else:
+            self.accounts[account_number] -= amount
+            print("Amount Withdrawn:", amount)
     
     def balance_inquiry(self, account_number):
-        
-        print(f"Available Balance= , {self.accounts[account_number]}")
-
-
-zc_bank = Bank()
-bob = Person(1, "Bob", "Smith")
-zc_bank.add_customer(bob)
-bob_savings = Account(1001, "SAVINGS", bob)
-zc_bank.add_account(bob_savings)
-# zc_bank.balance_inquiry(1001)
-# 0
-'''zc_bank.deposit(1001, 256.02)
-zc_bank.balance_inquiry(1001)
-# 256.02
-zc_bank.withdrawal(1001, 128)
-zc_bank.balance_inquiry(1001)
-# 128.02
-'''
+        print(f"Available Balance= {self.accounts[account_number]}")
