@@ -29,6 +29,10 @@ class Bank:
     
     def add_customer(self, person):
         self.customers.append(person.id)
+        if person.id not in self.customers:
+            self.customers[person.id]
+        else:
+            print("Customer ID already exist")
     
     def add_account(self, account):
         if account not in self.accounts:

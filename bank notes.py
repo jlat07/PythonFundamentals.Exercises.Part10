@@ -33,7 +33,7 @@ James.last_name
 'Thompson'
 
 zc_bank.add_customer(James)
-a.customers
+zc_bank.customers
 ['James', <__main__.Person object at 0x105712ef0>]
 print(a.customers[1])
 <__main__.Person object at 0x105712ef0>
