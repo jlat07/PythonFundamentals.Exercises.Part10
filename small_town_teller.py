@@ -5,10 +5,10 @@ class Person:
         self.last_name = last_name
     
     def __str__(self):
-        return f"{self.id}, {self.first_name}_{self.last_name}"
+        return f"{self.id}, {self.first_name} {self.last_name}"
     
     def __repr__(self):
-        return f"{self.id}, {self.first_name}_{self.last_name}"
+        return f"{self.id}, {self.first_name} {self.last_name}"
 
 
 class Account:
@@ -28,17 +28,28 @@ class Bank:
         self.accounts = {}
     
     def add_customer(self, person):
-        self.customers.append(person.id)
         if person.id not in self.customers:
-            self.customers[person.id]
+            self.customers.append(person.id)
         else:
             print("Customer ID already exist")
+    
+    def remove_customer(self, person):
+        if person.id in self.customers:
+            self.customers.remove(person.id)
+        else:
+            print("Customer does not exist")
     
     def add_account(self, account):
         if account not in self.accounts:
             self.accounts[account.number] = account.balance
         else:
             print("Account already exist")
+    
+    def remove_account(self, account):
+        if account in self.accounts:
+            del self.accounts[account.number]
+        else:
+            print("Account does not exist")
     
     def deposit(self, account_number, amount):
         self.accounts[account_number] += amount
@@ -47,7 +58,6 @@ class Bank:
     
     def withdrawal(self, account_number, amount):
         self.accounts[account_number] -= amount
-        
         if amount > self.accounts[account_number]:
             print("Insufficient balance")
         else:
