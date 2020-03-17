@@ -31,7 +31,7 @@ class Bank:
     
     def add_customer(self, customer: Person):
         if customer.id not in self.customers:
-            self.customers[customer.id] = customer
+            self.customers[customer.id] = customer.first_name, customer.last_name
         else:
             raise ValueError(f"Customer with id {customer.id} already exist.")
     
@@ -59,17 +59,13 @@ class Bank:
         print("Amount Deposited:", amount)
     
     def withdrawal(self, account_number: int, amount: float):
-        self.accounts[account_number] -= amount
-        if amount > self.accounts[account_number].balance:
-            print("Insufficient balance")
-        else:
+        if account_number in self.accounts:
             self.accounts[account_number] -= amount
             print("Amount Withdrawn:", amount)
     
     def balance_inquiry(self, account_number: int):
         if account_number in self.accounts:
-            inquiry = self.accounts[account_number]
-            print(f"Available Balance = {inquiry}")
+            print(f"Available Balance = {self.accounts[account_number]}")
         else:
             print('Invalid Account Number')
 
