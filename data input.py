@@ -1,8 +1,3 @@
-import unittest
-import unittest.mock
-from io import StringIO
-import small_town_teller
-
 
     james = Person(1, 'James', 'Thompson')
     bob = Person(2, 'Bob', 'Smith')
