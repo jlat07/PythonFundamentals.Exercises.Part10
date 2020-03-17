@@ -95,5 +95,6 @@ class PersistenceUtils:
     def load_pickle(pickle_file):
         with open(pickle_file, 'rb') as handler:
             data = pickle.load(handler)
-        return data
         print("Data Loaded")
+        return data
+        
