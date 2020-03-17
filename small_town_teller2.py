@@ -1,6 +1,6 @@
 from typing import Dict
-import json
 import pickle
+
 
 class Person:
     def __init__(self, person_id: int, first_name: str, last_name: str):
@@ -70,27 +70,27 @@ class Bank:
             print(f"Available Balance = {self.accounts[account_number]}")
         else:
             print('Invalid Account Number')
-            
+    
     def save_data(self):
         PersistenceUtils.write_pickle("customers.pickle", self.customers)
         PersistenceUtils.write_pickle("accounts.pickle", self.accounts)
-
+    
     def load_data(self):
         self.customers = PersistenceUtils.load_pickle("customers.pickle")
         self.accounts = PersistenceUtils.load_pickle("accounts.pickle")
+
 
 class PersistenceUtils:
     
     def __init__(self):
         pass
-
+    
     @staticmethod
     def write_pickle(file_name, data):
         with open(file_name, "wb") as handler:
             pickle.dump(data, handler)
         print('Data Saved')
-
-
+    
     @staticmethod
     def load_pickle(pickle_file):
         with open(pickle_file, 'rb') as handler:
